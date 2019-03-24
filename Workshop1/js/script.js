@@ -20,3 +20,7 @@ function loadBookData() {
 $(function () {
     loadBookData();
 });
+
+$(document).ready(function () {
+    $("#insertbook").kendoButton();
+})
