@@ -1,4 +1,4 @@
-
+$(document).ready(function () {
 var bookDataFromLocalStorage = [];
 var bookCategoryList = [
     { text: "資料庫", value: "database", src: "image/database.jpg" },
@@ -21,6 +21,19 @@ $(function () {
     loadBookData();
 });
 
-$(document).ready(function () {
-    $("#insertbook").kendoButton();
-})
+
+    var datas = new kendo.data.DataSource({
+        data: [{ Id: 1, Name: "one" }, { Id: 2, Name: "two" }],
+        pageSize: 20
+    });
+
+    $("#book").kendoGrid({
+        dataSource: datas,
+        height: 500,
+        columns: [
+            { field: "Id", title: "id", width: "50%" },
+            { field: "Name", title: "Name", width: "50%" },
+        ],
+        sortable:true
+    });
+});
