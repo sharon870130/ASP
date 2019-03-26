@@ -28,7 +28,7 @@ $(function () {
 $(document).ready(function () {
 
     $("#add_book_window").hide();
-
+    $(".delete_book").kendoButton();
     $("#book").kendoGrid({
         dataSource: {
             data: {
@@ -40,7 +40,15 @@ $(document).ready(function () {
             pageSize: 20
 
         },
-        height: 500,
+        
+        height: 550,
+        groupable: false,
+        sortable: true,
+        pageable: {
+            refresh: false,
+            pageSizes: true,
+            buttonCount: 5
+        },
 
         columns: [
             {
@@ -81,12 +89,12 @@ $(document).ready(function () {
         ]
     });
 
-
+    
     $(".delete_book").kendoButton();
-
-
+    
 
 });
+
 
 $("#add_book").click(function () {
     $("#add_book_window").kendoWindow({
