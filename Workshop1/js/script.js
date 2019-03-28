@@ -23,78 +23,82 @@ $(function () {
 });
 
 
-
-
 $(document).ready(function () {
-
     $("#add_book_window").hide();
     $(".delete_book").kendoButton();
     $("#book").kendoGrid({
+        toolbar: "<center><input type='text' class='k-input bgcolor' placeholder='輸入' id='search'></center>",
         dataSource: {
-            data: {
-                "items": bookDataFromLocalStorage
-            },
-            schema: {
-                data: "items"
-            },
+            data: bookData,
             pageSize: 20
 
         },
-        
-        height: 550,
-        groupable: false,
-        sortable: true,
-        pageable: {
-            refresh: false,
-            pageSizes: true,
-            buttonCount: 5
-        },
-
         columns: [
             {
-                template: "<button class='delete_book'>刪除</button>",
+                template: "<script>$('.delete_book').kendoButton();</script>" +
+                    "<button class='delete_book'>刪除</button> ",
                 field: "",
-                title: ""
+                title: "",
+                width: "9%",
             },
             {
                 field: "BookId",
-                title: "書籍編號"
+                title: "書籍<br>編號",
+                width: "6%",
             },
             {
                 field: "BookName",
                 title: "書籍名稱",
+                width: "20%",
             }, {
                 field: "BookCategory",
-                title: "書籍種類",
+                title: "書籍<br>種類",
+                width: "8%"
             }, {
                 field: "BookAuthor",
                 title: "作者",
+                width: "10%"
             }, {
                 field: "BookBoughtDate",
-                title: "購買日期",
+                title: "購買<br>日期",
+                width: "8%",
             }, {
                 field: "",
-                title: "送達狀態",
+                title: "送達<br>狀態",
+                width: "6%",
             }, {
                 field: "BookPrice",
                 title: "金額",
+                width: "8%",
             }, {
                 field: "BookAmount",
                 title: "數量",
+                width: "6%",
             }, {
                 field: "BookTotal",
                 title: "總計",
+                width: "8%",
             },
 
-        ]
+        ],
+        height: 550,
+        sortable: true,
+        pageable: {
+            pageSize: 20,
+            messages: {
+
+                display: "顯示條目 {0}-{1} 共 {2}"
+            }
+        }
     });
 
     
     $(".delete_book").kendoButton();
-    
-
 });
 
+$(document).click(function () {
+    $('.delete_book').kendoButton();
+});
 
 $("#add_book").click(function () {
     $("#add_book_window").kendoWindow({
@@ -109,3 +113,18 @@ $("#add_book").click(function () {
     ]
 }).data("kendoWindow").center().open();
 });
+
+
+$(document).ready(function () {
+    $("#book_category").kendoDropDownList({
+        dataSource: bookCategoryList,
+        dataTextField: "text",
+        dataValueDield: "value"
+
+    });
+});
+
+
+
+
+

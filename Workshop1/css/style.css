@@ -121,3 +121,8 @@ main{
     content:'*';
     color: red;
 }
+
+.bgcolor {
+    background-color: #3343a3;
+    color: #ffffff;
+}
