@@ -114,15 +114,52 @@ $("#add_book").click(function () {
 }).data("kendoWindow").center().open();
 });
 
-
 $(document).ready(function () {
+    var selectedthing;
     $("#book_category").kendoDropDownList({
         dataSource: bookCategoryList,
         dataTextField: "text",
-        dataValueDield: "value"
+        dataValueField: "value",
+       
+    });
+    
+    $('#book_category').change(function () {
+        $(".book-image").attr('src', 'image/' + $("#book_category").find(":selected").val() + '.jpg');
+    });
+    
+});
 
+
+$(document).ready(function () {
+    $("#bought_datepicker").kendoDatePicker();
+
+
+
+
+
+
+
+
+
+
+    var validator = $("#book_form").kendoValidator().data("kendoValidator"),
+        status = $(".status");
+
+    $("form").submit(function (event) {
+        event.preventDefault();
+        if (validator.validate()) {
+            status.text("Hooray! Your tickets has been booked!")
+                .removeClass("invalid")
+                .addClass("valid");
+        } else {
+            status.text("Oops! There is invalid data in the form.")
+                .removeClass("valid")
+                .addClass("invalid");
+        }
     });
 });
+
+
 
 
 
