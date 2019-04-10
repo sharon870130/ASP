@@ -94,6 +94,11 @@ $(document).ready(function () {
 
     
     $(".delete_book").kendoButton();
+
+    $("#search").keyup(function () {
+       
+    });
+
 });
 
 $(document).click(function () {
@@ -132,10 +137,16 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#bought_datepicker").kendoDatePicker();
+    $("#delivered_datepicker").kendoDatePicker();
 
+    var price, amount;
+    $("#book_price").keyup(function () {
+        $("#book_total").text(($("#book_price").val())*($("#book_amount").val()));
+    });
 
-
-
+    $("#book_amount").keyup(function () {
+        $("#book_total").text(($("#book_price").val()) * ($("#book_amount").val()));
+    });
 
 
 
